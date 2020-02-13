@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ad.web.mapper.AdMapper">
+
+    <select id="selectAdUser" parameterType="SearchCriteria" resultType="AdDto">
+		SELECT  ID, 
+		        PW, 
+		        GRAD,
+		        DAY
+		 FROM ( 
+		        SELECT ID, 
+		               PW, 
+		               GRAD, 
+		               TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS DAY,
+		               ROW_NUMBER() OVER(ORDER BY ID DESC) AS RNUM
+		         FROM AD_USER 
+		         <include refid="search"></include>	
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY ID DESC
+    </select>
+    
+    <select id="selectAdUserCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(ID)
+		  FROM AD_USER
+	]]>
+	</select>
+    
+    <sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+    <insert id="insertAdUser"  parameterType="AdDto">
+    insert into AD_USER (id, pw , grad) values (#{id, jdbcType=VARCHAR }, #{pw, jdbcType=VARCHAR }, #{grad, jdbcType=VARCHAR })
+    </insert>
+
+	<update id="updateAdUser"  parameterType="AdDto">
+	update AD_USER
+	set    pw =  #{pw, jdbcType=VARCHAR }
+	     , grad =  #{grad, jdbcType=VARCHAR }
+	where ID = #{id, jdbcType=VARCHAR }
+	</update>
+	
+	<delete id="delereAdUser" parameterType="AdDto">
+	delete from AD_USER where ID = #{id, jdbcType=VARCHAR }
+	</delete>
+</mapper>

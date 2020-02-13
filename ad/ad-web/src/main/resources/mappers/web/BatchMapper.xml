@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ad.web.mapper.BatchMapper">
+
+    <select id="selectBatchList" parameterType="SearchCriteria" resultType="batchDto">
+		SELECT BJI.JOB_INSTANCE_ID
+             , BJI.VERSION
+             , BJI.JOB_NAME
+             , BJI.JOB_KEY
+		 FROM ( 
+		        SELECT JOB_INSTANCE_ID
+		             , VERSION
+		             , JOB_NAME
+		             , JOB_KEY
+		             , ROW_NUMBER() OVER(ORDER BY JOB_INSTANCE_ID DESC) AS RNUM
+		         FROM BATCH_JOB_INSTANCE 
+		      ) BJI
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BJI.JOB_INSTANCE_ID DESC
+    </select>
+    
+    <select id="selectBatchListCount" parameterType="SearchCriteria" resultType="int">
+		SELECT COUNT(*)
+		 FROM BATCH_JOB_INSTANCE
+    </select>
+    
+</mapper>

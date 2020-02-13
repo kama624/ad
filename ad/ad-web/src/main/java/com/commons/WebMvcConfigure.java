@@ -1,4 +1,4 @@
-package org.ad.web.jsp;
+package com.commons;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;

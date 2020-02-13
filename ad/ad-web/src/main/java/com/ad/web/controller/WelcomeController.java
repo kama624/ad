@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.ad.web.jsp;
+package com.ad.web.controller;
 
 import java.util.Date;
 import java.util.Map;
@@ -31,21 +31,16 @@ public class WelcomeController {
 
 	@RequestMapping("/")
 	public String welcome(Map<String, Object> model) {
-		System.out.println("sssssssssssssss");
 		model.put("time", new Date());
 		model.put("message", this.message);
-		return "welcome";
+		return "/welcome";
 	}
-	
 	
 	@RequestMapping("/index")
 	public String welcome2(Map<String, Object> model) {
-		
-		
-		System.out.println("welcome2(Map<");
 		model.put("time", new Date());
 		model.put("message", this.message);
-		return "index";
+		return "/index";
 	}
 
 }

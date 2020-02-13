@@ -5,7 +5,7 @@
     <artifactId>ad</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>ad-test</artifactId>
+  <artifactId>ad-batch</artifactId>
   <dependencies>
   	<dependency>
 		<groupId>com.ad</groupId>

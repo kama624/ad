@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan(basePackages = {"com.ad.mapper"})
+@MapperScan(basePackages = {"com.ad.mapper.**"})
 public class MyBatisConfig {
 
     @Autowired

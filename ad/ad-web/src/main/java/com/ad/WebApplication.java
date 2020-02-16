@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.Application;
@@ -33,4 +34,5 @@ public class WebApplication {
 	public ModelMapper modelMapper() {
 	    return new ModelMapper();
 	}
+	
 }

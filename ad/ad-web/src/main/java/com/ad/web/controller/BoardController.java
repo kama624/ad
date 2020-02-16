@@ -87,7 +87,7 @@ public class BoardController {
 		List<Map<String, Object>> fileList = boardService.selectFileList(boardDto.getBno());
 		mvc.addObject("file", fileList);
 		
-		mvc.setViewName("board/boardReadView");
+		mvc.setViewName("/board/boardReadView");
 		return mvc;
 	}
 	
@@ -99,7 +99,7 @@ public class BoardController {
 		mvc.addObject("scri", scri);
 		List<Map<String, Object>> fileList = boardService.selectFileList(boardDto.getBno());
 		mvc.addObject("file", fileList);
-		mvc.setViewName("board/boardUpdateView");
+		mvc.setViewName("/board/boardUpdateView");
 		return mvc;
 	}
 	
@@ -167,7 +167,7 @@ public class BoardController {
 		
 		mvc.addObject("replyUpdate", replyService.selectReyply(replyDto.getRno()));
 		mvc.addObject("scri", scri);
-		mvc.setViewName("board/replyUpdateView");
+		mvc.setViewName("/board/replyUpdateView");
 		
 		return mvc;
 	}
@@ -198,7 +198,7 @@ public class BoardController {
 		
 		mvc.addObject("replyDelete", replyService.selectReyply(replyDto.getRno()));
 		mvc.addObject("scri", scri);
-		mvc.setViewName("board/replyDeleteView");
+		mvc.setViewName("/board/replyDeleteView");
 
 		return mvc;
 	}

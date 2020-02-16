@@ -13,12 +13,14 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,9 +33,10 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 @RequiredArgsConstructor
 @EnableBatchProcessing
+//@ConditionalOnProperty(name = "spring.batch.job.names", havingValue = "TestJob3")
 public class TestJob3 {
 
-	private static final String JOB_NAME = "TestJob3221";
+	private static final String JOB_NAME = "TestJob3";
 	private static final String STEP_NAME = "TestStep1";
 
 	@Autowired
@@ -52,10 +55,11 @@ public class TestJob3 {
 		log.info(" afterJob getStatus()  " + jobExecution.getStatus());
 	}
 	
-	
+	//--spring.batch.job.names=TestJob3
     @Bean
-    public Job TestJob3221() {
+    public Job TestJob3() {
         return jobBuilderFactory.get(JOB_NAME)
+        		.incrementer(new RunIdIncrementer())
                 .start(TestStep1())
                 .next(TestStep2())
                 .build();

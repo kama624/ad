@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ad.dto.AdDto;
 import com.ad.dto.SearchCriteria;
-import com.ad.web.mapper.AdMapper;
+import com.ad.mapper.web.AdMapper;
 import com.ad.web.service.AdService;
 
 @Service("AdService")

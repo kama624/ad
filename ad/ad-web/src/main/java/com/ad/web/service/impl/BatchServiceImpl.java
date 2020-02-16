@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ad.dto.BatchDto;
 import com.ad.dto.SearchCriteria;
-import com.ad.web.mapper.BatchMapper;
+import com.ad.mapper.web.BatchMapper;
 import com.ad.web.service.BatchService;
 
 @Service("BatchService")

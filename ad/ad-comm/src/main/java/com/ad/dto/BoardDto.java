@@ -18,4 +18,19 @@ public class BoardDto {
 	private String writer;
 	private Date regdate;
 	
+	public BoardDto(int bno, String title, String content, String writer, Date regdate) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.regdate = regdate;
+	}
+
+	public BoardDto() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 }

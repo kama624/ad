@@ -1,4 +1,4 @@
-package com.ad.web.mapper;
+package com.ad.mapper.web;
 
 import java.util.List;
 import java.util.Map;

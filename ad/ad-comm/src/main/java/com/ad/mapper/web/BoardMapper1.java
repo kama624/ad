@@ -1,20 +1,22 @@
-package com.ad.web.mapper;
+package com.ad.mapper.web;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ad.dto.BoardDto;
+
 //import com.ad.dto.BoardDto;
 //import com.ad.dto.SearchCriteria;
 
 @Mapper
-public interface BoardMapper {
+public interface BoardMapper1 {
 
 	// 게시글 작성
 //	public int insertBoard(BoardDto boardDto) throws Exception;
 //	// 게시물 목록 조회
-//	public List<BoardDto> boardList() throws Exception;
+	public List<BoardDto> boardList() throws Exception;
 //	// 게시물 페이징 목록 조회
 //	public List<BoardDto> boardListPage(SearchCriteria scri) throws Exception;
 //	// 게시물 총 갯수

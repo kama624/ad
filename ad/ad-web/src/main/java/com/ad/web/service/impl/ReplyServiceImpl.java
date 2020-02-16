@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ad.dto.ReplyDto;
-import com.ad.web.mapper.ReplyMapper;
+import com.ad.mapper.web.ReplyMapper;
 import com.ad.web.service.ReplyService;
 
 @Service("ReplyService")

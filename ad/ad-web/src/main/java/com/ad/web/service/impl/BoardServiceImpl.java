@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ad.dto.BoardDto;
 import com.ad.dto.SearchCriteria;
-import com.ad.web.mapper.BoardMapper;
+import com.ad.mapper.web.BoardMapper;
 import com.ad.web.service.BoardService;
 import com.commons.FileUtils;
 

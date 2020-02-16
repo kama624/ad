@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ad.batch;
+package com.ad;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;

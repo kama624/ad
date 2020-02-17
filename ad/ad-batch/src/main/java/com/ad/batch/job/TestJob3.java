@@ -20,6 +20,7 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -37,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class TestJob3 {
 
-	private static final String JOB_NAME = "TestJob3221";
+	private static final String JOB_NAME = "TestJob3";
 	private static final String STEP_NAME = "TestStep1";
 
 	@Autowired
@@ -56,7 +57,7 @@ public class TestJob3 {
 		log.info(" afterJob getStatus()  " + jobExecution.getStatus());
 	}
 	
-	
+	//--spring.batch.job.names=TestJob3
     @Bean
     @Primary
     public Job TestJob3221() {

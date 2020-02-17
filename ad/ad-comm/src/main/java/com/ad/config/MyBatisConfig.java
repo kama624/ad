@@ -2,6 +2,7 @@ package com.ad.config;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -40,6 +41,6 @@ public class MyBatisConfig {
     
     @Bean
     public SqlSessionTemplate sqlSession(SqlSessionFactory factory) {
-        return new SqlSessionTemplate(factory);
+        return new SqlSessionTemplate(factory, ExecutorType.BATCH);
     }
 }

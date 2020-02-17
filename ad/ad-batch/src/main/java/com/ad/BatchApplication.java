@@ -30,9 +30,4 @@ public class BatchApplication {
 		SpringApplication application = new SpringApplication(BatchApplication.class);
 		application.run(args);
 	}
-	
-	@Bean
-	public ModelMapper modelMapper() {
-	    return new ModelMapper();
-	}
 }

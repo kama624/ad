@@ -44,8 +44,4 @@ public class BatchApplication extends DefaultBatchConfigurer {
 //		application.run(args);
 	}
 
-	@Bean
-	public ModelMapper modelMapper() {
-	    return new ModelMapper();
-	}
 }

@@ -5,10 +5,12 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ad.batch.job.TestJob3;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,23 +18,43 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+
 public class JobLauncherController {
 
-//    private final JobLauncher jobLauncher;
-//    private final Job job;
-//
-//    @GetMapping("/launchjob")
-//    public String handle(@RequestParam("fileName") String fileName) throws Exception {
-//        try {
-//            JobParameters jobParameters = new JobParametersBuilder()
-//                                    .addString("input.file.name", fileName)
-//                                    .addLong("time", System.currentTimeMillis())
-//                                    .toJobParameters();
-//            jobLauncher.run(job, jobParameters);
-//        } catch (Exception e) {
-//            log.info(e.getMessage());
-//        }
-//
-//        return "Done";
-//    }
+	@Autowired(required = false)
+    private JobLauncher jobLauncher;
+	@Autowired(required = false)
+    private Job job;
+    @Autowired
+    private ApplicationContext context;
+
+    
+    @GetMapping("/launchjob")
+    public String handle(String fileName) throws Exception {
+    	
+		
+		  context = new AnnotationConfigApplicationContext(TestJob3.class); String[]
+		  beanNames = context.getBeanDefinitionNames();
+		 System.out.println("======================================================");
+		 for(String beanNm : beanNames) { System.out.println(beanNm); }
+		 
+    	
+    	
+    	System.out.println(context);
+        try {
+        	
+        	
+        	
+        	Job  job2 = (Job) context.getBean("TestJob3221");
+            JobParameters jobParameters = new JobParametersBuilder()
+                                    .addString("input.file.name", fileName)
+                                    .addLong("time", System.currentTimeMillis())
+                                    .toJobParameters();
+            jobLauncher.run(job2, jobParameters);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+
+        return "Done";
+    }
 }

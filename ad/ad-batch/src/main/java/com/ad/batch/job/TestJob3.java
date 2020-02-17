@@ -23,6 +23,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
 import com.ad.dto.BoardDto;
 
@@ -33,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 @RequiredArgsConstructor
 @EnableBatchProcessing
-//@ConditionalOnProperty(name = "spring.batch.job.names", havingValue = "TestJob3")
+@Component
 public class TestJob3 {
 
 	private static final String JOB_NAME = "TestJob3";
@@ -57,7 +59,8 @@ public class TestJob3 {
 	
 	//--spring.batch.job.names=TestJob3
     @Bean
-    public Job TestJob3() {
+    @Primary
+    public Job TestJob3221() {
         return jobBuilderFactory.get(JOB_NAME)
         		.incrementer(new RunIdIncrementer())
                 .start(TestStep1())
@@ -67,7 +70,7 @@ public class TestJob3 {
 	
 	@Bean
 	public Step TestStep1() {
-		log.info("  Step Step() --job.name:TestJob231  " );
+		log.info("  Step Step() --spring.batch.job.names=TestJob3221  " );
 
 		return stepBuilderFactory.get(STEP_NAME)
 			.<BoardDto, BoardDto>chunk(1)

@@ -32,20 +32,12 @@ public class JobLauncherController {
     @GetMapping("/launchjob")
     public String handle(String fileName) throws Exception {
     	
-		
-		  context = new AnnotationConfigApplicationContext(TestJob3.class); String[]
-		  beanNames = context.getBeanDefinitionNames();
-		 System.out.println("======================================================");
-		 for(String beanNm : beanNames) { System.out.println(beanNm); }
-		 
-    	
-    	
     	System.out.println(context);
         try {
         	
         	
         	
-        	Job  job2 = (Job) context.getBean("TestJob3221");
+        	Job  job2 = (Job) context.getBean("TestJob31");
             JobParameters jobParameters = new JobParametersBuilder()
                                     .addString("input.file.name", fileName)
                                     .addLong("time", System.currentTimeMillis())

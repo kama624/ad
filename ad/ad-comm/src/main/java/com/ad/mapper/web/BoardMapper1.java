@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.ad.dto.BoardDto;
 
@@ -11,6 +12,7 @@ import com.ad.dto.BoardDto;
 //import com.ad.dto.SearchCriteria;
 
 @Mapper
+@Qualifier(value = "db1SqlSessionTemplate")
 public interface BoardMapper1 {
 
 	// 게시글 작성

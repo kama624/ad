@@ -19,6 +19,7 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -38,11 +39,12 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class TestJob3 {
 
-	private static final String JOB_NAME = "TestJob3";
+	private static final String JOB_NAME = "TestJob31";
 	private static final String STEP_NAME = "TestStep1";
 
 	@Autowired
-	private SqlSessionFactory sqlSessionFactory;
+//	@Qualifier(value = "db2SqlSessionFactory")
+	private SqlSessionFactory db2SqlSessionFactory;
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
 	@Autowired
@@ -60,7 +62,7 @@ public class TestJob3 {
 	//--spring.batch.job.names=TestJob3
     @Bean
     @Primary
-    public Job TestJob3221() {
+    public Job TestJob31() {
         return jobBuilderFactory.get(JOB_NAME)
         		.incrementer(new RunIdIncrementer())
                 .start(TestStep1())
@@ -95,7 +97,7 @@ public class TestJob3 {
 	public ItemReader<BoardDto> sampleItemReader() {
 		log.info("  Step sampleItemReader()   " );
 		MyBatisPagingItemReader<BoardDto> reader = new MyBatisPagingItemReader<BoardDto>();
-		reader.setSqlSessionFactory(sqlSessionFactory);
+		reader.setSqlSessionFactory(db2SqlSessionFactory);
 		reader.setQueryId("com.ad.mapper.batch.TestMapper.selectMapper");
 		return reader;
 	}
@@ -110,7 +112,7 @@ public class TestJob3 {
 	public ItemWriter<BoardDto> sampleItemWriter() {
 		log.info("  Step sampleItemWriter()   " );
 		MyBatisBatchItemWriter<BoardDto> writer = new MyBatisBatchItemWriter<BoardDto>();
-		writer.setSqlSessionFactory(sqlSessionFactory);
+		writer.setSqlSessionFactory(db2SqlSessionFactory);
 		writer.setStatementId("com.ad.mapper.batch.TestMapper.updateBoard");
 
 		return writer;

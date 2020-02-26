@@ -11,6 +11,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
@@ -20,12 +21,13 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-//@MapperScan(basePackages = {"com.ad.mapper.web"})
+//@MapperScan(basePackages = {"com.ad.mapper.web"}) 
 @MapperScan(value="com.ad.mapper", sqlSessionFactoryRef="sqlSessionFactory")
 @EnableTransactionManagement
-public class MyBatisConfig {
+public class MyBatisConfig  {
 
 	@Bean(name ="db1DataSource")
     @Primary

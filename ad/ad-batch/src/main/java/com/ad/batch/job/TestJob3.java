@@ -43,8 +43,7 @@ public class TestJob3 {
 	private static final String STEP_NAME = "TestStep1";
 
 	@Autowired
-//	@Qualifier(value = "db2SqlSessionFactory")
-	private SqlSessionFactory db2SqlSessionFactory;
+	private SqlSessionFactory sqlSessionFactory;
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
 	@Autowired
@@ -97,7 +96,7 @@ public class TestJob3 {
 	public ItemReader<BoardDto> sampleItemReader() {
 		log.info("  Step sampleItemReader()   " );
 		MyBatisPagingItemReader<BoardDto> reader = new MyBatisPagingItemReader<BoardDto>();
-		reader.setSqlSessionFactory(db2SqlSessionFactory);
+		reader.setSqlSessionFactory(sqlSessionFactory);
 		reader.setQueryId("com.ad.mapper.batch.TestMapper.selectMapper");
 		return reader;
 	}
@@ -112,7 +111,7 @@ public class TestJob3 {
 	public ItemWriter<BoardDto> sampleItemWriter() {
 		log.info("  Step sampleItemWriter()   " );
 		MyBatisBatchItemWriter<BoardDto> writer = new MyBatisBatchItemWriter<BoardDto>();
-		writer.setSqlSessionFactory(db2SqlSessionFactory);
+		writer.setSqlSessionFactory(sqlSessionFactory);
 		writer.setStatementId("com.ad.mapper.batch.TestMapper.updateBoard");
 
 		return writer;

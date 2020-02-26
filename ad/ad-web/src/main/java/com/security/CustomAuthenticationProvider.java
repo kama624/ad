@@ -16,8 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.ad.dto.MamberDto;
-import com.ad.web.service.MemberService;
+//import com.ad.dto.MamberDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +29,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	
 	// 여기서 하는 일은 인증을 어떻게 할지에 대한 프로파이더를 정의한다. 
 	private PasswordEncoder encoder;
-	private MemberService memberService;
+//	private MemberService memberService;
 	
 	public CustomAuthenticationProvider(PasswordEncoder encoder) {
 		this.encoder = encoder;
@@ -55,7 +54,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 			
 		}
 		String password = user.getPassword();
-		MamberDto dto = new MamberDto();
+//		MamberDto dto = new MamberDto();
 //		dto.setUserId(userId);
 //		dto.setPassword(password);
 		

@@ -38,6 +38,29 @@
 	</sql>
    	
    	<select id="boardListPage" resultType="boardDto" parameterType="criteria">
+   	/*boardListPage*/
+		SELECT  BNO, 
+		        TITLE, 
+		        CONTENT,
+		        WRITER, 
+		        REGDATE
+		 FROM ( 
+		        SELECT BNO, 
+		               TITLE, 
+		               CONTENT, 
+		               WRITER, 
+		               REGDATE, 
+		               ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM
+		         FROM MP_BOARD
+		         WHERE 1=1 
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BNO DESC
+	</select>
+	
+   	<select id="boardListPage2" resultType="boardDto" parameterType="criteria">
+   	/*boardListPage2*/
 		SELECT  BNO, 
 		        TITLE, 
 		        CONTENT,
@@ -128,4 +151,16 @@
     	DEL_GB = 'Y'
     	WHERE FILE_NO = #{FILE_NO}
     </update>	
+    
+    
+    
+    
+    <update id="boardUpdate2" parameterType="boardDto">
+		UPDATE MP_BOARD
+		   SET TITLE    =   #{title},
+		   	   WRITER  =   #{writer},
+		   	   REGDATE = sysdate
+		 WHERE BNO = #{bno} 
+	</update>
+	
 </mapper>

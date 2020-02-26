@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ad.mapper.web.enterprise.AdEnterpriseMapper">
+
+	<select id="selectAdEnterpriseList" resultType="adEnterpriseDto" parameterType="searchCriteria">
+		/*selectAdEnterpriseList*/
+		SELECT ADE.ADVRTS_ENTRPS_ID
+			, ADE.RPRSNTV_NM
+			, ADE.ADVRTS_ENTRPS_BIZRNO
+			, ADE.ADVRTS_ENTRPS_NM
+			, ADE.ENTRPS_TLPHON_NO
+			, ADE.ENTRPS_MBTLNUM
+			, ADE.ENTRPS_ATPT
+			, ADE.ENTRPS_GU_GUN
+			, ADE.ENTRPS_DETAIL_ADRES
+			, ADE.QR_FILE_ID
+			, ADE.USE_YN
+			, 'N' AS STATUS
+			, ADE.RNUM
+		FROM (
+		   SELECT AEI.ADVRTS_ENTRPS_ID
+				, AEI.RPRSNTV_NM
+				, AEI.ADVRTS_ENTRPS_BIZRNO
+				, AEI.ADVRTS_ENTRPS_NM
+				, AEI.ENTRPS_TLPHON_NO
+				, AEI.ENTRPS_MBTLNUM
+				, AEI.ENTRPS_ATPT
+				, AEI.ENTRPS_GU_GUN
+				, AEI.ENTRPS_DETAIL_ADRES
+				, AEI.QR_FILE_ID
+				, AEI.USE_YN
+				, ROW_NUMBER() OVER(ORDER BY AEI.ADVRTS_ENTRPS_ID DESC) AS RNUM
+			FROM  ADVRTS_ENTRPS_INFO AEI
+			WHERE 1=1
+		) ADE
+		WHERE ADE.RNUM
+		BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY
+		ADE.ADVRTS_ENTRPS_ID DESC
+	</select>
+
+	<select id="selectAdEnterpriseListCnt" parameterType="searchCriteria" resultType="int">
+		/*selectAdEnterpriseListCnt*/
+		SELECT COUNT(*)
+		FROM ADVRTS_ENTRPS_INFO AEI
+	</select>
+
+	<insert id="insertAdEnterprise" parameterType="adEnterpriseDto" useGeneratedKeys="true" keyProperty="advrtsEntrpsId">
+		<selectKey keyProperty="advrtsEntrpsId" resultType="String" order="BEFORE">
+			SELECT /*insertAdEnterprise|selectKey*/ 'AD_' || TO_CHAR(SYSDATE, 'YYYYMMDD') ||  TO_CHAR(LPAD(ID_SEQ.NEXTVAL, 5, 0)) FROM DUAL 
+		</selectKey> 
+		/*insertAdEnterprise|insert*/
+		INSERT INTO 
+		ADVRTS_ENTRPS_INFO
+		 (
+		   ADVRTS_ENTRPS_ID
+		 , ADVRTS_ENTRPS_NM
+		 , RPRSNTV_NM
+		 , ADVRTS_ENTRPS_BIZRNO 
+		 , ENTRPS_TLPHON_NO
+		 , ENTRPS_MBTLNUM
+		 , ENTRPS_ATPT
+		 , ENTRPS_GU_GUN
+		 , ENTRPS_DETAIL_ADRES
+		 , QR_FILE_ID
+		 , USE_YN
+		 )VALUES
+		 ( #{advrtsEntrpsId, jdbcType=VARCHAR}
+		,#{advrtsEntrpsNm, jdbcType=VARCHAR}
+		,#{rprsntvNm, jdbcType=VARCHAR}
+		,#{advrtsEntrpsBizrno, jdbcType=VARCHAR} 
+		,#{entrpsTlphonNo, jdbcType=VARCHAR}
+		,#{entrpsMbtlnum, jdbcType=VARCHAR}
+		,#{entrpsAtpt, jdbcType=VARCHAR}
+		,#{entrpsGuGun, jdbcType=VARCHAR}
+		,#{entrpsDetailAdres, jdbcType=VARCHAR}
+		,#{qrFileId, jdbcType=VARCHAR}
+		,#{useYn, jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="updateAdEnterprise" parameterType="adEnterpriseDto">
+	/*updateAdEnterprise*/
+	UPDATE ADVRTS_ENTRPS_INFO
+	set    ADVRTS_ENTRPS_NM = #{advrtsEntrpsNm, jdbcType=VARCHAR}
+		 , RPRSNTV_NM = #{rprsntvNm, jdbcType=VARCHAR}
+		 , ADVRTS_ENTRPS_BIZRNO = #{advrtsEntrpsBizrno, jdbcType=VARCHAR}
+		 , ENTRPS_TLPHON_NO = #{entrpsTlphonNo, jdbcType=VARCHAR}
+		 , ENTRPS_MBTLNUM = #{entrpsMbtlnum, jdbcType=VARCHAR}
+		 , ENTRPS_ATPT = #{entrpsAtpt, jdbcType=VARCHAR}
+		 , ENTRPS_GU_GUN = #{entrpsGuGun, jdbcType=VARCHAR}
+		 , ENTRPS_DETAIL_ADRES = #{entrpsDetailAdres, jdbcType=VARCHAR}
+		 , QR_FILE_ID = #{qrFileId, jdbcType=VARCHAR}
+		 , USE_YN = #{useYn, jdbcType=VARCHAR}
+	WHERE  ADVRTS_ENTRPS_ID = #{advrtsEntrpsId, jdbcType=VARCHAR}
+	</update>
+</mapper>

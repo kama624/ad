@@ -16,12 +16,22 @@
 	</head>
 	<script type="text/javascript">
       $(function(){
+    	  $(function() {
+    		 var test = '${pageMaker.makeQuery(1)}';
+    		 if(test == ""){
+    		 	self.location = " /board/boardList";
+        	 }
+    		  console.log("@@"+test);
+    		});
         $('#searchBtn').click(function() {
-          self.location = "boardList" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+          self.location = "/board/boardList" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
         });
       });   
     </script>
 	<body>
+		<div id="top">
+			<%@include file="../layout/top.jsp" %>
+		</div>
 		<div id="root"  class="container">
 			<header>
 				<h1> 게시판</h1>

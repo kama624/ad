@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ad.mapper.web.member.AdMemberMapper">
+
+	<insert id="insertAdMember" parameterType="adMemberDto" >
+	INSERT INTO AD_USER 
+	( ID
+	, PW
+	, NAME
+	, TLPHON_NO
+	, MBTLNUM
+	, GRAD
+	, ATPT
+	, GU_GUN
+	, DETAIL_ADRES
+	, USE_YN
+	) VALUES (			
+          #{id, jdbcType=VARCHAR}
+		, #{pw, jdbcType=VARCHAR}
+		, #{name, jdbcType=VARCHAR}
+		, #{tlphonNo, jdbcType=VARCHAR}
+		, #{mbtlnum, jdbcType=VARCHAR}
+		, #{grad, jdbcType=VARCHAR}
+		, #{atpt, jdbcType=VARCHAR}
+		, #{guGun, jdbcType=VARCHAR}
+		, #{detailAdres, jdbcType=VARCHAR}
+		, #{useYn, jdbcType=VARCHAR}
+	)
+	</insert>
+
+	<insert id="insertAdEnterprise" parameterType="adEnterpriseDto" useGeneratedKeys="true" keyProperty="advrtsEntrpsId">
+		<selectKey keyProperty="advrtsEntrpsId" resultType="String" order="BEFORE">
+			SELECT 'AD_' || TO_CHAR(SYSDATE, 'YYYYMMDD') ||  TO_CHAR(LPAD(ID_SEQ.NEXTVAL, 5, 0)) FROM DUAL 
+		</selectKey> 
+		insert into 
+			ADVRTS_ENTRPS_INFO
+			 (
+			   ADVRTS_ENTRPS_ID
+			 , ADVRTS_ENTRPS_NM
+			 , RPRSNTV_NM
+			 , ADVRTS_ENTRPS_BIZRNO 
+			 , ENTRPS_TLPHON_NO
+			 , ENTRPS_MBTLNUM
+			 , ENTRPS_ATPT
+			 , ENTRPS_GU_GUN
+			 , ENTRPS_DETAIL_ADRES
+			 , QR_FILE_ID
+			 , USE_YN
+			 )VALUES
+			 ( #{advrtsEntrpsId, jdbcType=VARCHAR}
+			,#{advrtsEntrpsNm, jdbcType=VARCHAR}
+			,#{rprsntvNm, jdbcType=VARCHAR}
+			,#{advrtsEntrpsBizrno, jdbcType=VARCHAR} 
+			,#{entrpsTlphonNo, jdbcType=VARCHAR}
+			,#{entrpsMbtlnum, jdbcType=VARCHAR}
+			,#{entrpsAtpt, jdbcType=VARCHAR}
+			,#{entrpsGuGun, jdbcType=VARCHAR}
+			,#{entrpsDetailAdres, jdbcType=VARCHAR}
+ 			,#{qrFileId, jdbcType=VARCHAR}
+			,#{useYn, jdbcType=VARCHAR}
+			)
+	</insert>
+	
+	<insert id="insertUserMapping" parameterType="map">
+		INSERT INTO USER_MPNG
+		( ID, ADVRTS_ENTRPS_ID)
+		VALUES
+		( #{id} , #{advrtsEntrpsId} )
+	</insert>
+
+</mapper>

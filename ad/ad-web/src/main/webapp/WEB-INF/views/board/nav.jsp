@@ -1,10 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style type="text/css">
-	li {list-style: none; display:inline; padding: 6px;}
-</style>
+<link rel="stylesheet" href="../dist/jui-grid.classic.css" />
+<script type="text/javascript">
+     $(function(){
+    	 boardList = function() {
+    		 self.location = "/board/boardList2";
+ 		}
+    	 writeView = function() {
+    		 self.location = "/board/writeView";
+ 		}
+   	  });
+   </script>
 <ul>
-	<li><a href="/board/boardList">목록</a></li>
-	<li><a href="/board/writeView">글 작성</a></li>
-	<li><a href="">로그인</a></li>
+	<li>
+		<button class="btn small" onclick="boardList()">
+			<i class="icon-play"></i> 목록
+		</button>
+	</li>
+	<li><button class="btn small" onclick="writeView()">
+			<i class="icon-play"></i> 글 작성
+		</button>
+	</li>
 </ul>

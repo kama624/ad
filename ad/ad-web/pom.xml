@@ -33,6 +33,11 @@
 		<name>local repository</name> 
 		<url>C:\path\to\local\repo</url> 
 		</repository> 
+	    <repository>
+	        <id>central</id>
+	          <name>Central Repository</name>
+	          <url>https://repo.maven.apache.org/maven2</url>
+	    </repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -153,6 +158,11 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		 <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-jsp</artifactId>
+      <version>3.0.8</version>
+  </dependency>
 	</dependencies>
 	<build>
 		<plugins>

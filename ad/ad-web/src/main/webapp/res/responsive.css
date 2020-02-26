@@ -1,0 +1,256 @@
+@media screen and (max-device-width: 700px) {
+	header .menu-right {
+		display: none;
+	}
+
+	.main nav .container {
+		padding-top: 115px;
+	}
+	.main nav .container-2 {
+		padding-top: 75px;
+	}
+	.main nav .container-3 {
+		padding-top: 170px;
+	}
+	.main nav .container-4 {
+		padding-top: 85px;
+	}
+
+	.main-chart .box {
+		width: 100% !important;
+	}
+	.main-chart .message {
+		font-size: 1.3em !important;
+		padding: 15px !important;
+		margin-top: 30px !important;
+	}
+	.main-chart-1 {
+		height: 610px !important;
+	}
+	.main-chart-1 .box {
+		margin: 50px 0px !important;
+	}
+	.main-chart-1 .title {
+		font-size: 4em !important;
+		margin-top: 80px !important;
+	}
+	.main-chart-2 .center {
+		background-position: -500px 15px;
+	}
+	.main-chart-5 .chart {
+		width: 550px !important;
+	}
+
+	.center {
+		width: 600px;
+	}
+
+	nav.about img {
+		width: 100%;
+		margin-top: 50px;
+	}
+	nav.about .msg {
+		font-size: 24px !important;
+		line-height: 32px !important;
+	}
+
+	#about .hr {
+		display: block;
+	}
+	#about .col-4 {
+		float: none;
+		width: 100%;
+		margin-bottom: 30px;
+		padding-top: 30px;
+		text-align: center;
+	}
+	#about .col-4 p {
+		width: 100% !important;
+	}
+
+	/* Gallery */
+	.gallery-container {
+		width: 100% !important;
+	}
+	.gallery-list .item {
+		flex: 0 0 100% !important;
+	}
+	.gallery-list .item.iframe {
+		display: none;
+	}
+}
+
+@media screen and (max-device-width: 400px) {
+	header .menu-left, header .menu-right {
+		display: none;
+	}
+
+	header #sidemenu {
+		position: absolute;
+		display: block;
+		right: 0px;
+		top: 20px;
+		font-size: 22px;
+		color: white;
+	}
+
+	body.menu-open .menu-window {
+		right: 0px;
+	}
+	.menu-window {
+		display: block;
+		position: fixed;
+		right: -240px;
+		top: 0px;
+		bottom: 0px;
+		width: 240px;
+		background: #28303d;
+		color: #ffffff;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
+		z-index: 99999;
+	}
+	.menu-window .nav {
+		position: relative;
+		padding: 30px 20px;
+		overflow: auto;
+	}
+	.menu-window .nav #sidemenu-close {
+		position: absolute;
+		top: 28px;
+		font-size: 18px;
+		color: white;
+	}
+	.menu-window .menu {
+		list-style: none;
+		padding: 0px;
+	}
+	.menu-window .menu li {
+		padding: 0px;
+		margin: 0px;
+		text-align: center;
+		padding: 10px 0px;
+		border-bottom: 1px solid #474a52;
+	}
+	.menu-window .menu li a {
+		text-decoration: none;
+		color: white;
+		font-size: 16px;
+	}
+
+	.main .img-control-left, .main .img-control-right {
+		display: none !important;
+	}
+
+	.main nav .title {
+		font-size: 4em;
+	}
+	.main nav .detail {
+		font-size: 1.2em;
+		text-align: center;
+	}
+	.main nav .detail .desktop-br {
+		display: none;
+	}
+	.main nav .container > a {
+		display: none;
+	}
+
+	nav.sub .msg {
+		display: none;
+	}
+
+	.main-chart nav {
+		background-position: -330px -70px !important;
+	}
+	.main-chart .message {
+		font-size: 1.2em !important;
+		padding: 10px !important;
+		text-align: center !important;
+		margin-top: 20px !important;
+	}
+	.main-chart-1 .box {
+		margin: 50px 0px !important;
+	}
+	.main-chart-1 .title {
+		font-size: 3.7em !important;
+		margin-top: 100px !important;
+	}
+	.main-chart-1 .img-play {
+		margin-top: 30px !important;
+	}
+	.main-chart-2 .center {
+		background-position: -610px 30px;
+	}
+	.main-chart-3 .chart {
+		margin-top: 30px !important;
+	}
+	.main-chart-4 .chart {
+		margin-top: 30px !important;
+	}
+	.main-chart-5 .chart {
+		width: 320px !important;
+	}
+	.main-chart-1 {
+		height: 570px !important;
+	}
+	.main-chart-2 {
+		height: 280px !important;
+	}
+	.main-chart-3 {
+		height: 480px !important;
+	}
+	.main-chart-4 {
+		height: 820px !important;
+	}
+	.main-chart-5 {
+		height: 630px !important;
+	}
+
+	.center {
+		width: 360px;
+	}
+
+	.home .row-line {
+		display: none;
+	}
+	.home .col-4 {
+		float: none;
+		width: 100%;
+		margin-bottom: 30px;
+	}
+	.home p {
+		font-size: 13px;
+	}
+
+	nav.about {
+		margin-top: 20px !important;
+		padding-top: 80px !important;
+		height: 424px !important;
+	}
+	nav.about img {
+		width: 100%;
+		margin-top: 50px;
+	}
+	nav.about .msg {
+		font-size: 24px !important;
+		line-height: 30px !important;
+	}
+
+	#about .col-4 img {
+		width: 100% !important;
+	}
+	#about .col-12 {
+		margin-top: 30px !important;
+	}
+
+	footer .msg {
+		font-size: 10px;
+		line-height: 1.5em;
+	}
+	footer .link {
+		font-size: 12px;
+	}
+}

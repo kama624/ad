@@ -47,6 +47,11 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDto> boardListPage(SearchCriteria scri) throws Exception {
 		return mapper.boardListPage(scri);
 	}
+	// 게시물 목록 조회
+	@Override
+	public List<BoardDto> boardListPage2(SearchCriteria scri) throws Exception {
+		return mapper.boardListPage2(scri);
+	}
 	
 	// 게시물 총 갯수
 	@Override
@@ -96,4 +101,11 @@ public class BoardServiceImpl implements BoardService {
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
 		return mapper.selectFileInfo(map);
 	}	
+	
+//	===========================================================================================
+	@Override
+	public int boardUpdate2(BoardDto boardDto, SearchCriteria scri) throws Exception{
+		int cnt = mapper.boardUpdate2(boardDto);
+		return cnt;
+	}
 }

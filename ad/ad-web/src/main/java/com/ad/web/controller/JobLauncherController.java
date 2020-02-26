@@ -10,8 +10,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ad.batch.job.TestJob3;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,20 +30,20 @@ public class JobLauncherController {
     @GetMapping("/launchjob")
     public String handle(String fileName) throws Exception {
     	
-    	System.out.println(context);
-        try {
-        	
-        	
-        	
-        	Job  job2 = (Job) context.getBean("TestJob31");
-            JobParameters jobParameters = new JobParametersBuilder()
-                                    .addString("input.file.name", fileName)
-                                    .addLong("time", System.currentTimeMillis())
-                                    .toJobParameters();
-            jobLauncher.run(job2, jobParameters);
-        } catch (Exception e) {
-            log.info(e.getMessage());
-        }
+//    	System.out.println(context);
+//        try {
+//        	
+//        	
+//        	
+//        	Job  job2 = (Job) context.getBean("TestJob31");
+//            JobParameters jobParameters = new JobParametersBuilder()
+//                                    .addString("input.file.name", fileName)
+//                                    .addLong("time", System.currentTimeMillis())
+//                                    .toJobParameters();
+//            jobLauncher.run(job2, jobParameters);
+//        } catch (Exception e) {
+//            log.info(e.getMessage());
+//        }
 
         return "Done";
     }

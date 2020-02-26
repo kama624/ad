@@ -2,17 +2,20 @@ package com.ad.web.controller;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +26,7 @@ import com.ad.dto.SearchCriteria;
 import com.ad.dto.page.PageMaker;
 import com.ad.web.service.BoardService;
 import com.ad.web.service.ReplyService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/board/*")
@@ -46,7 +50,8 @@ public class BoardController {
 	@RequestMapping(value = "/boardWrite", method = RequestMethod.POST)
 	public ModelAndView write(BoardDto boardDto
 			, @ModelAttribute("scri") SearchCriteria scri
-			, @RequestPart("fileUpload") MultipartFile[] files) throws Exception{
+			, @RequestPart("fileUpload") MultipartFile[] files
+			) throws Exception{
 		boardService.insertBoard(boardDto, files);
 		
 		ModelAndView mvc = new ModelAndView();
@@ -63,7 +68,7 @@ public class BoardController {
 	
 	// 게시판 목록 조회
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	public ModelAndView list(@ModelAttribute("scri") SearchCriteria scri) throws Exception{
+	public ModelAndView boardList(@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		ModelAndView mvc = new ModelAndView();
 //		mvc.addObject("boardList",boardService.boardList());
 		mvc.addObject("boardList",boardService.boardListPage(scri));
@@ -73,6 +78,47 @@ public class BoardController {
 		mvc.addObject("pageMaker", pageMaker);
 		
 		mvc.setViewName("/board/boardList");
+		return mvc;
+	}
+	
+	// 게시판 목록 조회
+	@RequestMapping(value = "/boardList2", method = RequestMethod.GET)
+	public ModelAndView boardList2(@ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		ModelAndView mvc = new ModelAndView();
+//		List<BoardDto> list = boardService.boardList();
+		List<BoardDto> list = boardService.boardListPage(scri);
+	    ObjectMapper om = new ObjectMapper();
+        // Map or List Object 를 JSON 문자열로 변환
+        String jsonStr = om.writeValueAsString(list);
+        mvc.addObject("boardList",jsonStr);
+        
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.boardListCount(scri));
+		mvc.addObject("pageMaker", pageMaker);
+		
+		mvc.setViewName("/board/boardList2");
+		return mvc;
+	}
+	
+	// 게시판 목록 조회
+	@RequestMapping(value = "/boardListPage2", method = RequestMethod.GET)
+	public ModelAndView boardListPage2(@ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		ModelAndView mvc = new ModelAndView();
+		List<BoardDto> list = boardService.boardListPage2(scri);
+	    ObjectMapper om = new ObjectMapper();
+        // Map or List Object 를 JSON 문자열로 변환
+        String jsonStr = om.writeValueAsString(list);
+        System.out.println("object to json : " + jsonStr);
+        mvc.addObject("boardList",jsonStr);
+        
+        System.out.println("@@@@@@@@@@@@@@@@scri : " + scri);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.boardListCount(scri));
+		mvc.addObject("pageMaker", pageMaker);
+		
+		mvc.setViewName("/board/boardListPage2");
 		return mvc;
 	}
 	
@@ -236,6 +282,28 @@ public class BoardController {
 		response.getOutputStream().close();
 		
 	}
+
+//	=========================================================================================================================
+	// 게시판 수정
+	@RequestMapping(value = "/boardUpdate2", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> boardUpdate2(BoardDto boardDto, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		Map resultMap = new HashMap<>();
+		int updateCnt = boardService.boardUpdate2(boardDto, scri);
+		resultMap.put("boardUpdate", updateCnt);
+		resultMap.put("msg", updateCnt >= 0 ? "저장되었습니다." : "저장에 실패하였습니다." );
+		return resultMap;
+	}
+	
+	
+//	@RequestMapping(value = "/ajaxBoardList2", method = RequestMethod.GET)
+//	public  @ResponseBody Map<String, Object>  ajaxBoardList2(@ModelAttribute("scri") SearchCriteria scri) throws Exception{
+//		Map resultMap = new HashMap<>();
+//		"boardList",boardService.boardListPage(scri));
+//		resultMap.put("boardUpdate", updateCnt);
+//		resultMap.put("msg", updateCnt >= 0 ? "저장되었습니다." : "저장에 실패하였습니다." );
+//		return resultMap;
+//		
+//	}
 
 	 
 }

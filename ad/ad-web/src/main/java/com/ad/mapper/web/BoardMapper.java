@@ -33,4 +33,11 @@ public interface BoardMapper {
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;	
 	// 첨부파일 수정
 	public void updateFile(Map<String, Object> map) throws Exception;
+	// 게시물 페이징 목록 조회
+	public List<BoardDto> boardListPage2(SearchCriteria scri) throws Exception;
+
+//	=========================================================================================
+	
+	public int boardUpdate2(BoardDto boardDto) throws Exception;
 }
+

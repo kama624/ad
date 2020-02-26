@@ -17,6 +17,8 @@ public interface BoardService {
 	public List<BoardDto> boardList() throws Exception;
 	// 게시물 목록 조회
 	public List<BoardDto> boardListPage(SearchCriteria scri) throws Exception;
+	// 게시물 목록 조회
+	public List<BoardDto> boardListPage2(SearchCriteria scri) throws Exception;
 	// 게시물 총 갯수
 	public int boardListCount(SearchCriteria scri) throws Exception;
 	// 게시물 목록 조회
@@ -29,4 +31,8 @@ public interface BoardService {
 	public List<Map<String, Object>> selectFileList(int bno) throws Exception;
 	// 첨부파일 다운'
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
+	
+//	==============================================================================================
+	
+	int boardUpdate2(BoardDto boardDto, SearchCriteria scri) throws Exception;
 }

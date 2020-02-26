@@ -13,6 +13,7 @@ import lombok.Setter;
 public class SearchCriteria extends Criteria{
 	private String searchType;
 	private String keyword;
+	private String iu;
 	
 
 	@Override

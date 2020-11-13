@@ -23,7 +23,7 @@ public class WebApplication {
 		application.run(args);
 
 	}
-//test
+
 //	@Bean
 //	public InternalResourceViewResolver internalResourceViewResolver() {
 //		InternalResourceViewResolver viewResolve = new InternalResourceViewResolver();

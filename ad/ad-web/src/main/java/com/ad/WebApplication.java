@@ -21,17 +21,17 @@ public class WebApplication {
 	public static void main(String[] args) throws Exception {
 		SpringApplication application = new SpringApplication(Application.class);
 		application.run(args);
-		
-	}
 
+	}
+//test
 //	@Bean
 //	public InternalResourceViewResolver internalResourceViewResolver() {
 //		InternalResourceViewResolver viewResolve = new InternalResourceViewResolver();
-//		viewResolve.setPrefix("/WEB-INF/views"); 
+//		viewResolve.setPrefix("/WEB-INF/views");
 //		viewResolve.setSuffix(".jsp");
 //		return viewResolve;
 //	}
-//	
+//
 	@Bean
     public TilesConfigurer tilesConfigurer() {
         final TilesConfigurer configurer = new TilesConfigurer();
@@ -47,5 +47,5 @@ public class WebApplication {
         tilesViewResolver.setViewClass(TilesView.class);
         return tilesViewResolver;
     }
-	
+
 }
